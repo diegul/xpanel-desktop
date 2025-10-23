@@ -22,7 +22,6 @@
       "icons/**/*"
     ],
     "asar": true,
-    "afterSign": "",
     "directories": {
       "buildResources": "icons"
     },
@@ -48,30 +47,11 @@
     "mac": {
       "target": ["dmg", "pkg"],
       "category": "public.app-category.utilities",
-      "icon": "icons/icon.icns",
       "artifactName": "XPANEL-Desktop-${version}-${arch}.${ext}",
-      "appId": "com.diegul.xpanel",
-      "hardenedRuntime": true,
-      "gatekeeperAssess": false,
-      "entitlements": "build/entitlements.mac.plist",
-      "entitlementsInherit": "build/entitlements.mac.plist"
+      "appId": "com.diegul.xpanel"
     },
     "dmg": {
-      "title": "XPANEL Desktop",
-      "icon": "icons/icon.icns",
-      "background": "icons/dmg-background.png",
-      "contents": [
-        {
-          "x": 130,
-          "y": 220
-        },
-        {
-          "x": 410,
-          "y": 220,
-          "type": "link",
-          "path": "/Applications"
-        }
-      ]
+      "title": "XPANEL Desktop"
     }
   },
   "dependencies": {
