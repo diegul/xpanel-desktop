@@ -1,4 +1,4 @@
-name: Build XPANEL Desktop
+name: XPANEL Desktop
 
 on:
   push:
