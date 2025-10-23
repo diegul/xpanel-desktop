@@ -28,7 +28,7 @@
     "win": {
       "target": ["nsis"],
       "icon": "icons/icon.ico",
-      "artifactName": "XPANEL-Desktop-Setup-${version}.exe"
+      "artifactName": "XPANEL-Desktop-Setup.${ext}"
     },
     "nsis": {
       "oneClick": false,
@@ -42,12 +42,12 @@
       "target": ["AppImage", "deb"],
       "category": "Utility",
       "icon": "icons",
-      "artifactName": "xpanel-desktop-${version}-${arch}.${ext}"
+      "artifactName": "xpanel-desktop-linux-${arch}.${ext}"
     },
     "mac": {
       "target": ["dmg", "pkg"],
       "category": "public.app-category.utilities",
-      "artifactName": "XPANEL-Desktop-${version}-${arch}.${ext}",
+      "artifactName": "XPANEL-Desktop-macos-${arch}.${ext}",
       "appId": "com.diegul.xpanel"
     },
     "dmg": {
