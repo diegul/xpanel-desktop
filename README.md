@@ -1,9 +1,14 @@
 # XPANEL Desktop
 
-A cross-platform and open source Electron wrapper for **Finalmouse XPANEL**, providing a native-feeling desktop app with full **WebHID** and **Centerpiece** support.
+[![Build XPANEL Desktop](https://github.com/diegul/xpanel-desktop/actions/workflows/build.yml/badge.svg)](https://github.com/diegul/xpanel-desktop/actions/workflows/build.yml)
+![Windows](https://img.shields.io/badge/Windows-windows--latest-blue?logo=windows)
+![macOS](https://img.shields.io/badge/macOS-macos--latest-lightgrey?logo=apple)
+![Linux](https://img.shields.io/badge/Linux-ubuntu--latest-orange?logo=ubuntu)
+[![AUR version](https://img.shields.io/aur/version/xpanel-desktop-bin?logo=arch-linux)](https://aur.archlinux.org/packages/xpanel-desktop-bin)
 
-[![Build Status](https://github.com/diegul/xpanel-desktop/workflows/Build%20XPANEL%20Desktop/badge.svg)](https://github.com/diegul/xpanel-desktop/actions)
-[![Latest Release](https://img.shields.io/github/v/release/diegul/xpanel-desktop)](https://github.com/diegul/xpanel-desktop/releases)
+A cross-platform Electron wrapper for **Finalmouse XPANEL**, bringing full WebHID support to a native desktop experience.
+
+---
 
 ## Download
 
