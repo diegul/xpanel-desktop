@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Desktop wrapper for Finalmouse XPANEL (Chromium-based, WebHID enabled).",
   "main": "main.js",
-  "author": "You",
+  "author": {
+    "name": "diegul",
+    "email": "management@diegul.com"
+  },
   "license": "MIT",
   "scripts": {
     "start": "electron .",
@@ -37,7 +40,7 @@
       "shortcutName": "XPANEL Desktop"
     },
     "linux": {
-      "target": ["AppImage", "deb", "rpm"],
+      "target": ["AppImage", "deb"],
       "category": "Utility",
       "icon": "icons",
       "artifactName": "xpanel-desktop-${version}-${arch}.${ext}"

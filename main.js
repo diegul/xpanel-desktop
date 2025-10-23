@@ -5,7 +5,7 @@ const XPANEL_URL = 'https://xpanel.finalmouse.com';
 
 const store = new Store();
 
-const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged;
+const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV !== 'production';
 
 let mainWindow = null;
 
@@ -284,7 +284,7 @@ function createWindow() {
     dialog.showMessageBox(win, {
       type: 'warning',
       title: 'Application Unresponsive',
-      message: 'The application has become unresponsive. You may need to reload the page.',
+      message: 'The application has become unresponsive, try reloading the page.',
       buttons: ['Reload', 'Close'],
       defaultId: 0
     }).then((result) => {
@@ -298,7 +298,7 @@ function createWindow() {
     console.error('Renderer process crashed');
     dialog.showErrorBox(
       'Application Crashed',
-      'The application has crashed. It will be reloaded automatically.'
+      'The application has crashed and will reload automatically.'
     );
     win.reload();
   });
@@ -323,25 +323,31 @@ function createWindow() {
   win.loadURL(XPANEL_URL);
 }
 
-app.whenReady().then(() => {
-  createMenu();
-  createWindow();
-});
-
-const gotLock = app.requestSingleInstanceLock();
-if (!gotLock) {
-  app.quit();
-} else {
-  app.on('second-instance', () => {
-    const wins = BrowserWindow.getAllWindows();
-    if (wins[0]) { wins[0].show(); wins[0].focus(); }
+if (app && app.whenReady) {
+  app.whenReady().then(() => {
+    createMenu();
+    createWindow();
   });
 }
 
-app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') app.quit();
-});
+if (app && app.requestSingleInstanceLock) {
+  const gotLock = app.requestSingleInstanceLock();
+  if (!gotLock) {
+    app.quit();
+  } else {
+    app.on('second-instance', () => {
+      const wins = BrowserWindow.getAllWindows();
+      if (wins[0]) { wins[0].show(); wins[0].focus(); }
+    });
+  }
+}
 
-app.on('activate', () => {
-  if (BrowserWindow.getAllWindows().length === 0) createWindow();
-});
+if (app && app.on) {
+  app.on('window-all-closed', () => {
+    if (process.platform !== 'darwin') app.quit();
+  });
+
+  app.on('activate', () => {
+    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+  });
+}
