@@ -27,8 +27,8 @@
     },
     "win": {
       "target": ["nsis"],
-      "icon": "icons/icon.ico",
-      "artifactName": "XPANEL-Desktop-Setup.${ext}"
+      "icon": "icons/xpanel-desktop.ico",
+      "artifactName": "XPANEL-Desktop-Setup-${version}.${ext}"
     },
     "nsis": {
       "oneClick": false,
@@ -41,13 +41,14 @@
     "linux": {
       "target": ["AppImage", "deb"],
       "category": "Utility",
-      "icon": "icons",
-      "artifactName": "xpanel-desktop-linux-${arch}.${ext}"
+      "icon": "icons/xpanel-desktop.png",
+      "artifactName": "xpanel-desktop-${version}-${arch}.${ext}"
     },
     "mac": {
       "target": ["dmg", "pkg"],
       "category": "public.app-category.utilities",
-      "artifactName": "XPANEL-Desktop-macos-${arch}.${ext}",
+      "icon": "icons/xpanel-desktop.icns",
+      "artifactName": "XPANEL-Desktop-${version}-${arch}.${ext}",
       "appId": "com.diegul.xpanel"
     },
     "dmg": {
