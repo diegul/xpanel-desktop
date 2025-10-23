@@ -1,4 +1,4 @@
-const { app, BrowserWindow, session, shell, dialog } = require('electron');
+const { app, BrowserWindow, session, shell, dialog, Menu } = require('electron');
 const Store = require('electron-store');
 
 const XPANEL_URL = 'https://xpanel.finalmouse.com';
@@ -6,6 +6,187 @@ const XPANEL_URL = 'https://xpanel.finalmouse.com';
 const store = new Store();
 
 const isDev = process.env.NODE_ENV === 'development' || !app.isPackaged;
+
+let mainWindow = null;
+
+{/* App Menu */}
+function createMenu() {
+  const template = [
+    {
+      label: 'Device',
+      submenu: [
+        {
+          label: 'Select New Device',
+          accelerator: process.platform === 'darwin' ? 'Cmd+Shift+D' : 'Ctrl+Shift+D',
+          click: () => {
+            if (mainWindow) {
+              mainWindow.webContents.send('navigate-to-device-selection');
+            }
+          }
+        },
+        {
+          label: 'Disconnect Current Device',
+          accelerator: process.platform === 'darwin' ? 'Cmd+Shift+X' : 'Ctrl+Shift+X',
+          click: () => {
+            if (mainWindow) {
+              mainWindow.webContents.send('disconnect-device');
+            }
+          }
+        },
+        { type: 'separator' },
+        {
+          label: 'Back to Start',
+          accelerator: process.platform === 'darwin' ? 'Cmd+Shift+H' : 'Ctrl+Shift+H',
+          click: () => {
+            if (mainWindow) {
+              mainWindow.loadURL(XPANEL_URL);
+            }
+          }
+        },
+        { type: 'separator' },
+        {
+          label: 'Refresh Page',
+          accelerator: 'F5',
+          click: () => {
+            if (mainWindow) {
+              mainWindow.reload();
+            }
+          }
+        },
+        {
+          label: 'Reload Application',
+          accelerator: process.platform === 'darwin' ? 'Cmd+R' : 'Ctrl+R',
+          click: () => {
+            if (mainWindow) {
+              mainWindow.loadURL(XPANEL_URL);
+            }
+          }
+        }
+      ]
+    },
+    {
+      label: 'View',
+      submenu: [
+        {
+          label: 'Toggle Full Screen',
+          accelerator: process.platform === 'darwin' ? 'Cmd+Ctrl+F' : 'F11',
+          click: () => {
+            if (mainWindow) {
+              mainWindow.setFullScreen(!mainWindow.isFullScreen());
+            }
+          }
+        },
+        {
+          label: 'Zoom In',
+          accelerator: process.platform === 'darwin' ? 'Cmd+Plus' : 'Ctrl+Plus',
+          click: () => {
+            if (mainWindow) {
+              const currentZoom = mainWindow.webContents.getZoomFactor();
+              mainWindow.webContents.setZoomFactor(currentZoom + 0.1);
+            }
+          }
+        },
+        {
+          label: 'Zoom Out',
+          accelerator: process.platform === 'darwin' ? 'Cmd+-' : 'Ctrl+-',
+          click: () => {
+            if (mainWindow) {
+              const currentZoom = mainWindow.webContents.getZoomFactor();
+              mainWindow.webContents.setZoomFactor(Math.max(0.5, currentZoom - 0.1));
+            }
+          }
+        },
+        {
+          label: 'Reset Zoom',
+          accelerator: process.platform === 'darwin' ? 'Cmd+0' : 'Ctrl+0',
+          click: () => {
+            if (mainWindow) {
+              mainWindow.webContents.setZoomFactor(1.0);
+            }
+          }
+        }
+      ]
+    },
+    {
+      label: 'Help',
+      submenu: [
+        {
+          label: 'About XPANEL Desktop',
+          click: () => {
+            shell.openExternal('https://github.com/diegul/xpanel-desktop');
+          }
+        },
+        {
+          label: 'Reset to Device Selection',
+          accelerator: process.platform === 'darwin' ? 'Cmd+Shift+R' : 'Ctrl+Shift+R',
+          click: () => {
+            if (mainWindow) {
+              mainWindow.loadURL(XPANEL_URL);
+            }
+          }
+        }
+      ]
+    }
+  ];
+
+  if (isDev) {
+    template.push({
+      label: 'Developer',
+      submenu: [
+        {
+          label: 'Toggle DevTools',
+          accelerator: 'F12',
+          click: () => {
+            if (mainWindow) {
+              mainWindow.webContents.toggleDevTools();
+            }
+          }
+        },
+        {
+          label: 'Reload',
+          accelerator: 'CmdOrCtrl+R',
+          click: () => {
+            if (mainWindow) {
+              mainWindow.reload();
+            }
+          }
+        }
+      ]
+    });
+  }
+
+  const menu = Menu.buildFromTemplate(template);
+  Menu.setApplicationMenu(menu);
+}
+
+function updateMenuForContext(win) {
+  if (!win) return;
+  
+  const currentUrl = win.webContents.getURL();
+  const isDeviceSelection = currentUrl === 'https://xpanel.finalmouse.com/' || 
+                           currentUrl.includes('device') || 
+                           currentUrl.includes('select');
+  
+  const menu = Menu.getApplicationMenu();
+  if (menu) {
+    const deviceMenu = menu.items.find(item => item.label === 'Device');
+    if (deviceMenu && deviceMenu.submenu) {
+      const selectDeviceItem = deviceMenu.submenu.items.find(item => item.label === 'Select New Device');
+      const disconnectItem = deviceMenu.submenu.items.find(item => item.label === 'Disconnect Current Device');
+      const backToStartItem = deviceMenu.submenu.items.find(item => item.label === 'Back to Start');
+      
+      if (selectDeviceItem) {
+        selectDeviceItem.enabled = !isDeviceSelection;
+      }
+      if (disconnectItem) {
+        disconnectItem.enabled = !isDeviceSelection;
+      }
+      if (backToStartItem) {
+        backToStartItem.enabled = true; // Always available
+      }
+    }
+  }
+}
 
 function createWindow() {
   const defaultBounds = { width: 1200, height: 800, x: undefined, y: undefined };
@@ -27,7 +208,7 @@ function createWindow() {
     minHeight: 600,
     title: 'XPANEL Desktop',
     backgroundColor: '#111111',
-    autoHideMenuBar: true,
+    autoHideMenuBar: false,
     show: false,
     webPreferences: {
       preload: `${__dirname}/preload.js`,
@@ -36,6 +217,8 @@ function createWindow() {
       sandbox: true,
     }
   });
+
+  mainWindow = win;
 
   session.defaultSession.setPermissionRequestHandler((wc, permission, cb, details) => {
     if (permission === 'hid' && details.requestingUrl.startsWith('https://xpanel.finalmouse.com')) {
@@ -129,8 +312,21 @@ function createWindow() {
     }
   });
 
+  win.webContents.on('did-finish-load', () => {
+    updateMenuForContext(win);
+  });
+
+  win.webContents.on('page-title-updated', (event, title) => {
+    updateMenuForContext(win);
+  });
+
   win.loadURL(XPANEL_URL);
 }
+
+app.whenReady().then(() => {
+  createMenu();
+  createWindow();
+});
 
 const gotLock = app.requestSingleInstanceLock();
 if (!gotLock) {
@@ -140,7 +336,6 @@ if (!gotLock) {
     const wins = BrowserWindow.getAllWindows();
     if (wins[0]) { wins[0].show(); wins[0].focus(); }
   });
-  app.whenReady().then(createWindow);
 }
 
 app.on('window-all-closed', () => {
