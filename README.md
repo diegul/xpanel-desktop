@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/diegul/xpanel-desktop/actions/workflows/build.yml/badge.svg)](https://github.com/diegul/xpanel-desktop/actions/workflows/build.yml)
 
-A cross-platform Electron wrapper for **Finalmouse XPANEL**, bringing full WebHID support to a native desktop experience.
+A cross-platform Electron wrapper for **Finalmouse XPANEL**.
 
 ---
 
