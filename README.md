@@ -1,6 +1,7 @@
 # XPANEL Desktop
 
 [![Build Status](https://github.com/diegul/xpanel-desktop/actions/workflows/build.yml/badge.svg)](https://github.com/diegul/xpanel-desktop/actions/workflows/build.yml)
+[![AUR version](https://img.shields.io/aur/version/xpanel-desktop-bin?color=1793d1&logo=arch-linux&logoColor=white)](https://aur.archlinux.org/packages/xpanel-desktop-bin)
 
 A cross-platform Electron wrapper for **Finalmouse XPANEL**.
 
