@@ -1,10 +1,6 @@
 # XPANEL Desktop
 
-[![Build XPANEL Desktop](https://github.com/diegul/xpanel-desktop/actions/workflows/build.yml/badge.svg)](https://github.com/diegul/xpanel-desktop/actions/workflows/build.yml)
-![Windows](https://img.shields.io/badge/Windows-windows--latest-blue?logo=windows)
-![macOS](https://img.shields.io/badge/macOS-macos--latest-lightgrey?logo=apple)
-![Linux](https://img.shields.io/badge/Linux-ubuntu--latest-orange?logo=ubuntu)
-[![AUR version](https://img.shields.io/aur/version/xpanel-desktop-bin?logo=arch-linux)](https://aur.archlinux.org/packages/xpanel-desktop-bin)
+[![Build Status](https://github.com/diegul/xpanel-desktop/actions/workflows/build.yml/badge.svg)](https://github.com/diegul/xpanel-desktop/actions/workflows/build.yml)
 
 A cross-platform Electron wrapper for **Finalmouse XPANEL**, bringing full WebHID support to a native desktop experience.
 
@@ -18,7 +14,7 @@ Get the latest release for your platform:
 - **macOS**: Download the `.dmg` or `.pkg` installer  
 - **Linux**: Download the `.AppImage` or `.deb` package
 
-[Download Latest Release →](https://github.com/diegul/xpanel-desktop/releases/latest)
+[Download Latest Release](https://github.com/diegul/xpanel-desktop/releases/latest)
 
 ---
 
