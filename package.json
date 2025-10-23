@@ -47,7 +47,7 @@
       "category": "public.app-category.utilities",
       "icon": "icons/icon.icns",
       "artifactName": "XPANEL-Desktop-${version}-${arch}.${ext}",
-      "bundleId": "com.diegul.xpanel",
+      "appId": "com.diegul.xpanel",
       "hardenedRuntime": true,
       "gatekeeperAssess": false,
       "entitlements": "build/entitlements.mac.plist",
