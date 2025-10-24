@@ -4,6 +4,8 @@
 [![Windows](https://img.shields.io/badge/Windows-Download-0078d7?logo=windows&logoColor=white)](https://github.com/diegul/xpanel-desktop/releases/latest/download/XPANEL-Desktop-Setup.exe)
 [![macOS](https://img.shields.io/badge/macOS-Download-000000?logo=apple&logoColor=white)](https://github.com/diegul/xpanel-desktop/releases/latest/download/XPANEL-Desktop-macos-arm64.dmg)
 [![Linux](https://img.shields.io/badge/Linux-Download-FCC624?logo=linux&logoColor=black)](https://github.com/diegul/xpanel-desktop/releases/latest/download/xpanel-desktop-linux-x86_64.AppImage)
+[![AUR version](https://img.shields.io/aur/version/xpanel-desktop-bin?color=1793d1&logo=arch-linux&logoColor=white)](https://aur.archlinux.org/packages/xpanel-desktop-bin)
+
 
 A cross-platform Electron wrapper for **Finalmouse XPANEL**.
 
