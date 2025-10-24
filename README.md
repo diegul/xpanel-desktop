@@ -1,9 +1,9 @@
 # XPANEL Desktop
 
 [![Build Status](https://github.com/diegul/xpanel-desktop/actions/workflows/build.yml/badge.svg)](https://github.com/diegul/xpanel-desktop/actions/workflows/build.yml)
-[![Windows](https://img.shields.io/badge/Windows-Download-0078d7?logo=windows&logoColor=white)](https://github.com/diegul/xpanel-desktop/releases/download/v1.0.3/XPANEL-Desktop-Setup.exe)
-[![macOS](https://img.shields.io/badge/macOS-Download-000000?logo=apple&logoColor=white)](https://github.com/diegul/xpanel-desktop/releases/download/v1.0.3/XPANEL-Desktop-macos-arm64.dmg)
-[![Linux](https://img.shields.io/badge/Linux-Download-FCC624?logo=linux&logoColor=black)](https://github.com/diegul/xpanel-desktop/releases/download/v1.0.3/xpanel-desktop-linux-x86_64.AppImage)
+[![Windows](https://img.shields.io/badge/Windows-Download-0078d7?logo=windows&logoColor=white)](https://github.com/diegul/xpanel-desktop/releases/latest/download/XPANEL-Desktop-Setup.exe)
+[![macOS](https://img.shields.io/badge/macOS-Download-000000?logo=apple&logoColor=white)](https://github.com/diegul/xpanel-desktop/releases/latest/download/XPANEL-Desktop-macos-arm64.dmg)
+[![Linux](https://img.shields.io/badge/Linux-Download-FCC624?logo=linux&logoColor=black)](https://github.com/diegul/xpanel-desktop/releases/latest/download/xpanel-desktop-linux-x86_64.AppImage)
 
 A cross-platform Electron wrapper for **Finalmouse XPANEL**.
 
